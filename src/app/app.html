@@ -1,0 +1,20 @@
+<ion-menu [content]="menuContent">
+
+    <ion-header>
+        <ion-toolbar color="secondary">
+            <ion-title>Menu</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+        <ion-list>
+            <button ion-item (click)="home()" detail-none>Home</button>
+        </ion-list>
+        <ion-list>
+            <button ion-item (click)="about()" detail-none>About</button>
+        </ion-list>
+    </ion-content>
+
+</ion-menu>
+
+<ion-nav #menuContent [root]="rootPage"></ion-nav>
