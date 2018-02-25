@@ -14,6 +14,7 @@ export class DirContentComponent implements OnInit {
     selectedFile: Entry;
 
     constructor(private fileSystemProvider: FileSystemProvider) {
+        this.dirContent = [];
         this.selectedFile = null;
     }
 
