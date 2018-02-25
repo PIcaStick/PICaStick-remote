@@ -1,7 +1,10 @@
-<ion-grid *ngIf="dirContent">
-    <ion-col width-100>
-        <ion-list *ngFor="let dirOrFile of dirContent">
-            <ion-item [ngClass]="{'selected-file': dirOrFile == selectedFile}" (click)="changeDirOrActivate(dirOrFile)">{{dirOrFile.name}}</ion-item>
+<ion-grid>
+    <ion-col>
+        <ion-list>
+            <ion-item *ngFor="let dirOrFile of dirContent" 
+                    [ngClass]="{'selected-file': dirOrFile == selectedFile}" 
+                    (click)="changeDirOrActivate(dirOrFile)">{{dirOrFile.name}}
+            </ion-item>
         </ion-list>
     </ion-col>
 </ion-grid>
