@@ -15,10 +15,10 @@ export class FileSystemProvider {
 
         return this.file.resolveDirectoryUrl(parentPath)
             .then(parent => {
-                return this.file.listDir(
-                    this.getpath(prepararedPath),
-                    this.getDirName(prepararedPath)
-                ).then(directoryContent => {
+                const path = this.getpath(prepararedPath);
+                const dirName = this.getDirName(prepararedPath);
+                return this.file.listDir(path, dirName)
+                    .then(directoryContent => {
                     const modifiedContent = this.addPreviousDir(directoryContent, parent);
                     return modifiedContent;
                 });
