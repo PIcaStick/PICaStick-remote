@@ -1,4 +1,7 @@
-<!-- Generated template for the DirContentComponent component -->
-<div>
-  {{text}}
-</div>
+<ion-grid *ngIf="dirContent">
+    <ion-col width-100>
+        <ion-list *ngFor="let dirOfFile of dirContent">
+            <ion-item>{{dirOfFile.name}}</ion-item>
+        </ion-list>
+    </ion-col>
+</ion-grid>

@@ -11,7 +11,7 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
 import {DirContentComponent} from "../components/dir-content/dir-content";
-import {FileSystemeProvider} from '../providers/file-systeme/file-systeme';
+import {FileSystemProvider} from '../providers/file-system/file-system';
 
 @NgModule({
     declarations: [
@@ -36,7 +36,7 @@ import {FileSystemeProvider} from '../providers/file-systeme/file-systeme';
         SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         File,
-        FileSystemeProvider
+        FileSystemProvider
     ]
 })
 export class AppModule {

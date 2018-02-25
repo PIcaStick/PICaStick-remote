@@ -1,22 +1,26 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
-/**
- * Generated class for the DirContentComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+import {Entry} from "@ionic-native/file";
+import {FileSystemProvider} from "../../providers/file-system/file-system";
+import {NavController} from "ionic-angular";
+
+
 @Component({
-  selector: 'dir-content',
-  templateUrl: 'dir-content.html'
+    selector: 'dir-content',
+    templateUrl: 'dir-content.html'
 })
 export class DirContentComponent {
 
-  text: string;
+    dirContent: Entry[];
 
-  constructor() {
-    console.log('Hello DirContentComponent Component');
-    this.text = 'Hello World';
-  }
+    constructor(private fileSystemProvider: FileSystemProvider,
+                public navCtrl: NavController) {
+    }
+
+    ionViewWillEnter() {
+        this.fileSystemProvider.getFileOrDirFromPath("file:///sdcard/DCIM/Camera").then((fileOrDir) => {
+            this.dirContent = fileOrDir;
+        });
+    }
 
 }
