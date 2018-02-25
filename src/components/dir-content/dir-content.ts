@@ -40,7 +40,7 @@ export class DirContentComponent {
                 this.dirContent = fileOrDir;
             })
             .catch((reason) => {
-                console.error(reason)
+                console.error(reason.message)
             });
     }
 
