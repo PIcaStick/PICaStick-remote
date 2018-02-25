@@ -30,12 +30,11 @@ export class DirContentComponent {
         }
     }
 
-    activate(file: FileEntry) {
+    activate(file: Entry) {
         console.log(file);
     }
 
-    changeDir(dir: DirectoryEntry) {
-        console.log(dir.nativeURL);
+    changeDir(dir: Entry) {
         this.fileSystemProvider.getFileOrDirFromPath(dir.nativeURL)
             .then((fileOrDir) => {
                 this.dirContent = fileOrDir;

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 
-import {File} from "@ionic-native/file";
+import {DirectoryEntry, Entry, ErrorCallback, File, FileSystem, Metadata, MetadataCallback} from "@ionic-native/file";
 
 @Injectable()
 export class FileSystemProvider {
@@ -10,15 +10,24 @@ export class FileSystemProvider {
 
     public getFileOrDirFromPath(path: string) {
         path = this.preparePath(path);
-        return this.file.listDir(
-            this.getpath(path),
-            this.getDirName(path)
-        ).then((directoryContent) => {
-            return directoryContent;
-        }).catch((reason) => {
-            return Promise.reject(reason);
-        })
+
+        return this.file.resolveDirectoryUrl(path)
+            .then(current => {
+                return new Promise((resolve, reject) => {
+                    current.getParent(resolve, reject);
+                });
+            })
+            .then(parent => {
+                return this.file.listDir(
+                    this.getpath(path),
+                    this.getDirName(path)
+                ).then(directoryContent => {
+                    directoryContent = this.addPreviousDir(directoryContent, parent);
+                    return directoryContent;
+                });
+            });
     }
+
 
     private getpath(path: string): string {
         return path.substring(0, path.lastIndexOf("/") + 1);
@@ -33,5 +42,10 @@ export class FileSystemProvider {
             path = path.substring(0, path.length - 1);
         }
         return path
+    }
+
+    private addPreviousDir(directoryContent: Entry[], parent: DirectoryEntry): Entry[] {
+        directoryContent.unshift(parent);
+        return directoryContent;
     }
 }
