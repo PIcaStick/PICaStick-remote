@@ -17,11 +17,12 @@ export class FileSystemProvider {
             .then(parent => {
                 const path = this.getpath(prepararedPath);
                 const dirName = this.getDirName(prepararedPath);
-                return this.file.listDir(path, dirName)
-                    .then(directoryContent => {
-                    const modifiedContent = this.addPreviousDir(directoryContent, parent);
-                    return modifiedContent;
-                });
+                const dirListPromise = this.file.listDir(path, dirName);
+                return Promise.all([dirListPromise, parent]);
+            })
+            .then(([directoryContent, parent]) => {
+                const modifiedContent = this.addPreviousDir(directoryContent, parent);
+                return modifiedContent;
             });
     }
 
