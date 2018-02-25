@@ -9,18 +9,18 @@ export class FileSystemProvider {
     }
 
     public getFileOrDirFromPath(path: string) {
-        path = this.preparePath(path);
+        const prepararedPath = this.preparePath(path);
 
-        let parentPath = this.getParent(path);
+        const parentPath = this.getParent(prepararedPath);
 
         return this.file.resolveDirectoryUrl(parentPath)
             .then(parent => {
                 return this.file.listDir(
-                    this.getpath(path),
-                    this.getDirName(path)
+                    this.getpath(prepararedPath),
+                    this.getDirName(prepararedPath)
                 ).then(directoryContent => {
-                    directoryContent = this.addPreviousDir(directoryContent, parent);
-                    return directoryContent;
+                    const modifiedContent = this.addPreviousDir(directoryContent, parent);
+                    return modifiedContent;
                 });
             });
     }
@@ -47,7 +47,7 @@ export class FileSystemProvider {
     }
 
     private getParent(path: string) {
-        let tmpPath = path.substring(0, path.lastIndexOf("/"));
+        const tmpPath = path.substring(0, path.lastIndexOf("/"));
         if (tmpPath === "file://") {
             return "file:///";
         } else {
