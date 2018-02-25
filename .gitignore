@@ -34,5 +34,3 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 
-# del cordova config.xml
-/config.xml
