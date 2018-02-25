@@ -9,7 +9,12 @@ export class FileSystemProvider {
     }
 
     public getFileOrDirFromPath(path: string) {
-        return this.file.listDir(path, "").then((directoryContent) => {
+
+
+        return this.file.listDir(
+            path.substring(0, path.lastIndexOf("/")),
+            path.substring(path.lastIndexOf("/") + 1, path.length)
+        ).then((directoryContent) => {
             return directoryContent;
         }).catch((reason) => {
             return Promise.reject(reason);

@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 
 import {Entry} from "@ionic-native/file";
 import {FileSystemProvider} from "../../providers/file-system/file-system";
-import {NavController} from "ionic-angular";
 
 
 @Component({
@@ -13,11 +12,7 @@ export class DirContentComponent {
 
     dirContent: Entry[];
 
-    constructor(private fileSystemProvider: FileSystemProvider,
-                public navCtrl: NavController) {
-    }
-
-    ionViewWillEnter() {
+    constructor(private fileSystemProvider: FileSystemProvider) {
         this.fileSystemProvider.getFileOrDirFromPath("file:///sdcard/DCIM/Camera").then((fileOrDir) => {
             this.dirContent = fileOrDir;
         });
