@@ -18,13 +18,7 @@ export class DirContentComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.fileSystemProvider.getFileOrDirFromPath("file:///sdcard")
-            .then((fileOrDir) => {
-                this.dirContent = fileOrDir;
-            })
-            .catch((reason) => {
-                console.error(reason)
-            });
+        this.reloadDirContent("file:///sdcard")
     }
 
     changeDirOrActivate(dirOrFile: Entry) {
@@ -40,19 +34,23 @@ export class DirContentComponent implements OnInit {
     }
 
     changeDir(dir: Entry) {
+        this.reloadDirContent(dir.nativeURL)
+    }
+
+    private changeSelectedFile(file: Entry) {
+        this.selectedFile = file;
+        // TODO: Add an event emitter when the file selection changes
+    }
+
+    private reloadDirContent(path: string) {
         this.changeSelectedFile(null);
-        this.fileSystemProvider.getFileOrDirFromPath(dir.nativeURL)
+        this.fileSystemProvider.getFileOrDirFromPath(path)
             .then((fileOrDir) => {
                 this.dirContent = fileOrDir;
             })
             .catch((reason) => {
                 console.error(reason.message)
             });
-    }
-
-    private changeSelectedFile(file: Entry) {
-        this.selectedFile = file;
-        // TODO: Add an event emitter when the file selection changes
     }
 
 }
