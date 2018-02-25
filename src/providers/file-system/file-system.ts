@@ -49,7 +49,7 @@ export class FileSystemProvider {
     private getParent(path: string) {
         let tmpPath = path.substring(0, path.lastIndexOf("/"));
         if (tmpPath === "file://") {
-            return path;
+            return "file:///";
         } else {
             return tmpPath;
         }
