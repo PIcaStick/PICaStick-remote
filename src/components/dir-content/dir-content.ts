@@ -34,7 +34,7 @@ export class DirContentComponent implements OnInit {
     }
 
     changeDir(dir: Entry) {
-        this.reloadDirContent(dir.nativeURL)
+        this.reloadDirContent(dir.nativeURL);
     }
 
     private changeSelectedFile(file: Entry) {
@@ -49,7 +49,7 @@ export class DirContentComponent implements OnInit {
                 this.dirContent = fileOrDir;
             })
             .catch((reason) => {
-                console.error(reason.message)
+                console.error(reason.message);
             });
     }
 
