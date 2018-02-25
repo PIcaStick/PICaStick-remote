@@ -1,3 +1,7 @@
-.selected-file {
-  background-color: grey;
+dir-content {
+  overflow-y: scroll;
+
+  .selected-file {
+    background-color: grey;
+  }
 }
