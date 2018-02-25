@@ -14,7 +14,7 @@ export class DirContentComponent implements OnInit {
     selectedFile: Entry;
 
     constructor(private fileSystemProvider: FileSystemProvider) {
-        this.changeSelectedFile(null);
+        this.selectedFile = null;
     }
 
     ngOnInit() {
