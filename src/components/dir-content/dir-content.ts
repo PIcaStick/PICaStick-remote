@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-import {DirectoryEntry, Entry, FileEntry} from "@ionic-native/file";
+import {Entry} from "@ionic-native/file";
 import {FileSystemProvider} from "../../providers/file-system/file-system";
 
 
@@ -11,8 +11,12 @@ import {FileSystemProvider} from "../../providers/file-system/file-system";
 export class DirContentComponent {
 
     dirContent: Entry[];
+    selectedFile: Entry;
 
     constructor(private fileSystemProvider: FileSystemProvider) {
+
+        this.changeSelectedFile(null);
+
         this.fileSystemProvider.getFileOrDirFromPath("file:///sdcard")
             .then((fileOrDir) => {
                 this.dirContent = fileOrDir;
@@ -31,10 +35,11 @@ export class DirContentComponent {
     }
 
     activate(file: Entry) {
-        console.log(file);
+        this.changeSelectedFile(file);
     }
 
     changeDir(dir: Entry) {
+        this.changeSelectedFile(null);
         this.fileSystemProvider.getFileOrDirFromPath(dir.nativeURL)
             .then((fileOrDir) => {
                 this.dirContent = fileOrDir;
@@ -42,6 +47,11 @@ export class DirContentComponent {
             .catch((reason) => {
                 console.error(reason.message)
             });
+    }
+
+    private changeSelectedFile(file: Entry) {
+        this.selectedFile = file;
+        // TODO: Add an event emitter when the file selection changes
     }
 
 }
