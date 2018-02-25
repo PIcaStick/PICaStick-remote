@@ -13,7 +13,7 @@ export class DirContentComponent {
     dirContent: Entry[];
 
     constructor(private fileSystemProvider: FileSystemProvider) {
-        this.fileSystemProvider.getFileOrDirFromPath("file:///sdcard/DCIM/Camera").then((fileOrDir) => {
+        this.fileSystemProvider.getFileOrDirFromPath("file:///sdcard").then((fileOrDir) => {
             this.dirContent = fileOrDir;
         });
     }
