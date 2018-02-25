@@ -13,8 +13,6 @@ export class FileSystemProvider {
 
         let parentPath = this.getParent(path);
 
-        console.log(parentPath);
-
         return this.file.resolveDirectoryUrl(parentPath)
             .then(parent => {
                 return this.file.listDir(
@@ -49,12 +47,9 @@ export class FileSystemProvider {
     }
 
     private getParent(path: string) {
-        if (path === "file:") {
-            return "file:///";
-        }
         let tmpPath = path.substring(0, path.lastIndexOf("/"));
         if (tmpPath === "file://") {
-            return 'file:///';
+            return path;
         } else {
             return tmpPath;
         }
