@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import {Entry} from "@ionic-native/file";
 import {FileSystemProvider} from "../../providers/file-system/file-system";
@@ -8,15 +8,16 @@ import {FileSystemProvider} from "../../providers/file-system/file-system";
     selector: 'dir-content',
     templateUrl: 'dir-content.html'
 })
-export class DirContentComponent {
+export class DirContentComponent implements OnInit {
 
     dirContent: Entry[];
     selectedFile: Entry;
 
     constructor(private fileSystemProvider: FileSystemProvider) {
-
         this.changeSelectedFile(null);
+    }
 
+    ngOnInit() {
         this.fileSystemProvider.getFileOrDirFromPath("file:///sdcard")
             .then((fileOrDir) => {
                 this.dirContent = fileOrDir;
