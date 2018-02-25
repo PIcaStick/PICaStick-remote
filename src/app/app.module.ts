@@ -13,12 +13,19 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {DirContentComponent} from "../components/dir-content/dir-content";
 import {FileSystemProvider} from '../providers/file-system/file-system';
 
+import PhotosControllerComponent from '../components/photos-controller/photos-controller';
+import AlbumVisualizerComponent from '../components/album-visualizer/album-visualizer';
+import ActionBarComponent from '../components/action-bar/action-bar';
+
 @NgModule({
     declarations: [
         MyApp,
         HomePage,
         AboutPage,
-        DirContentComponent
+        DirContentComponent,
+        PhotosControllerComponent,
+        AlbumVisualizerComponent,
+        ActionBarComponent,
     ],
     imports: [
         BrowserModule,
@@ -29,7 +36,7 @@ import {FileSystemProvider} from '../providers/file-system/file-system';
         MyApp,
         HomePage,
         AboutPage,
-        DirContentComponent
+        DirContentComponent,
     ],
     providers: [
         StatusBar,
