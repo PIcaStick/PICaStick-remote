@@ -31,8 +31,12 @@ export class FileSystemProvider {
         return path.split('/').pop();
     }
 
+    /**
+     * Remove the n end trailing slashes
+     * @param path 
+     */
     private cleanPath(path: string): string {
-        return path.replace(/(.+)\/*$/, '$1');
+        return path.replace(/(.+?)\/*?$/, '$1');
     }
 
     private getParentPath(path: string) {
