@@ -9,14 +9,14 @@ export class FileSystemProvider {
     }
 
     public getFileOrDirFromPath(path: string) {
-        const url = `file://${path}`;
-        const prepararedPath = this.preparePath(url);
+        const prepararedPath = this.preparePath(path);
+        const url = `file://${prepararedPath}`;
 
-        const parentPath = this.getParent(prepararedPath);
+        const parentPath = this.getParent(url);
 
         return this.file.resolveDirectoryUrl(parentPath)
             .then(parent => {
-                const path = this.getpath(prepararedPath);
+                const path = this.getpath(url);
                 const dirName = this.getDirName(prepararedPath);
                 const dirListPromise = this.file.listDir(path, dirName);
                 return Promise.all([dirListPromise, parent]);
@@ -40,7 +40,7 @@ export class FileSystemProvider {
         while (path.charAt(path.length - 1) == '/') {
             path = path.substring(0, path.length - 1);
         }
-        return path
+        return path === '' ? '/' : path;
     }
 
     private addPreviousDir(directoryContent: Entry[], parent: DirectoryEntry): Entry[] {
