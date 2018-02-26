@@ -32,10 +32,7 @@ export class FileSystemProvider {
     }
 
     private cleanPath(path: string): string {
-        while (path.charAt(path.length - 1) == '/') {
-            path = path.substring(0, path.length - 1);
-        }
-        return path === '' ? '/' : path;
+        return path.replace(/(.+)\/*$/, '$1');
     }
 
     private addPreviousDir(directoryContent: Entry[], parent: DirectoryEntry): Entry[] {
