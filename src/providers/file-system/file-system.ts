@@ -22,8 +22,8 @@ export class FileSystemProvider {
                 return Promise.all([dirListPromise, parent]);
             })
             .then(([directoryContent, parent]) => {
-                const modifiedContent = this.addPreviousDir(directoryContent, parent);
-                return modifiedContent;
+                directoryContent.unshift(parent);
+                return directoryContent;
             });
     }
 
@@ -33,11 +33,6 @@ export class FileSystemProvider {
 
     private cleanPath(path: string): string {
         return path.replace(/(.+)\/*$/, '$1');
-    }
-
-    private addPreviousDir(directoryContent: Entry[], parent: DirectoryEntry): Entry[] {
-        directoryContent.unshift(parent);
-        return directoryContent;
     }
 
     private getParentPath(path: string) {
