@@ -9,7 +9,8 @@ export class FileSystemProvider {
     }
 
     public getFileOrDirFromPath(path: string) {
-        const prepararedPath = this.preparePath(path);
+        const url = `file://${path}`;
+        const prepararedPath = this.preparePath(url);
 
         const parentPath = this.getParent(prepararedPath);
 

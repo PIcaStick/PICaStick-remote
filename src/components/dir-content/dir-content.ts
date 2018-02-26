@@ -19,7 +19,7 @@ export class DirContentComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.reloadDirContent("file:///sdcard")
+        this.reloadDirContent('/sdcard');
     }
 
     changeDirOrActivate(dirOrFile: Entry) {
@@ -35,7 +35,7 @@ export class DirContentComponent implements OnInit {
     }
 
     changeDir(dir: Entry) {
-        this.reloadDirContent(dir.nativeURL);
+        this.reloadDirContent(dir.fullPath);
     }
 
     private changeSelectedFile(file: Entry) {
