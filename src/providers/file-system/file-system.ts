@@ -9,16 +9,16 @@ export class FileSystemProvider {
     }
 
     public getFileOrDirFromPath(path: string) {
-        const prepararedPath = this.preparePath(path);
-        const url = this.getUrlFromPath(prepararedPath);
+        const cleanPath = this.preparePath(path);
+        const url = this.getUrlFromPath(cleanPath);
 
-        const parentPath = this.getParentPath(prepararedPath);
+        const parentPath = this.getParentPath(cleanPath);
         const parentUrl = this.getUrlFromPath(parentPath);
 
         return this.file.resolveDirectoryUrl(parentUrl)
             .then(parent => {
-                const path = this.getpath(url);
-                const dirName = this.getDirName(prepararedPath);
+                const path = this.getPath(url);
+                const dirName = this.getDirName(cleanPath);
                 const dirListPromise = this.file.listDir(path, dirName);
                 return Promise.all([dirListPromise, parent]);
             })
@@ -29,7 +29,7 @@ export class FileSystemProvider {
     }
 
 
-    private getpath(path: string): string {
+    private getPath(path: string): string {
         return path.substring(0, path.lastIndexOf("/") + 1);
     }
 
