@@ -8,7 +8,11 @@ export class FileSystemProvider {
     constructor(private file: File) {
     }
 
-    public getFileOrDirFromPath(path: string) {
+    /**
+     * Get the entries (file and directories) of a directory
+     * @param path Directory path
+     */
+    public getEntriesOfDir(path: string): Promise<Entry[]> {
         const cleanPath = this.cleanPath(path);
         const url = this.getUrlFromPath(cleanPath);
 
@@ -27,10 +31,6 @@ export class FileSystemProvider {
             });
     }
 
-    private getDirName(path: string): string {
-        return path.split('/').pop();
-    }
-
     /**
      * Remove the n end trailing slashes
      * @param path 
@@ -39,12 +39,16 @@ export class FileSystemProvider {
         return path.replace(/(.+?)\/*?$/, '$1');
     }
 
-    private getParentPath(path: string) {
-        const tmpPath = path.substring(0, path.lastIndexOf("/"));
+    private getDirName(cleanPath: string): string {
+        return cleanPath.split('/').pop();
+    }
+
+    private getParentPath(cleanPath: string) {
+        const tmpPath = cleanPath.substring(0, cleanPath.lastIndexOf("/"));
         return tmpPath === '' ? '/' : tmpPath;
     }
 
-    private getUrlFromPath(path: string) {
-        return `file://${path}`;
+    private getUrlFromPath(cleanPath: string) {
+        return `file://${cleanPath}`;
     }
 }

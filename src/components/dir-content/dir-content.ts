@@ -45,11 +45,11 @@ export class DirContentComponent implements OnInit {
 
     private reloadDirContent(path: string) {
         this.changeSelectedFile(null);
-        this.fileSystemProvider.getFileOrDirFromPath(path)
-            .then((fileOrDir) => {
+        this.fileSystemProvider.getEntriesOfDir(path)
+            .then(fileOrDir => {
                 this.dirContent = fileOrDir;
             })
-            .catch((reason) => {
+            .catch(reason => {
                 console.error(reason.message);
             });
     }
