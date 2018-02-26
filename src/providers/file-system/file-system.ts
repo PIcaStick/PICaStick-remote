@@ -28,7 +28,7 @@ export class FileSystemProvider {
     }
 
     private getDirName(path: string): string {
-        return path.substring(path.lastIndexOf("/") + 1, path.length);
+        return path.split('/').pop();
     }
 
     private preparePath(path: string): string {
