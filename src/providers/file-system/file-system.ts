@@ -9,7 +9,7 @@ export class FileSystemProvider {
     }
 
     public getFileOrDirFromPath(path: string) {
-        const cleanPath = this.preparePath(path);
+        const cleanPath = this.cleanPath(path);
         const url = this.getUrlFromPath(cleanPath);
 
         const parentPath = this.getParentPath(cleanPath);
@@ -31,7 +31,7 @@ export class FileSystemProvider {
         return path.split('/').pop();
     }
 
-    private preparePath(path: string): string {
+    private cleanPath(path: string): string {
         while (path.charAt(path.length - 1) == '/') {
             path = path.substring(0, path.length - 1);
         }
