@@ -10,11 +10,12 @@ export class FileSystemProvider {
 
     public getFileOrDirFromPath(path: string) {
         const prepararedPath = this.preparePath(path);
-        const url = `file://${prepararedPath}`;
+        const url = this.getUrlFromPath(prepararedPath);
 
-        const parentPath = this.getParent(url);
+        const parentPath = this.getParentPath(prepararedPath);
+        const parentUrl = this.getUrlFromPath(parentPath);
 
-        return this.file.resolveDirectoryUrl(parentPath)
+        return this.file.resolveDirectoryUrl(parentUrl)
             .then(parent => {
                 const path = this.getpath(url);
                 const dirName = this.getDirName(prepararedPath);
@@ -48,12 +49,12 @@ export class FileSystemProvider {
         return directoryContent;
     }
 
-    private getParent(path: string) {
+    private getParentPath(path: string) {
         const tmpPath = path.substring(0, path.lastIndexOf("/"));
-        if (tmpPath === "file://") {
-            return "file:///";
-        } else {
-            return tmpPath;
-        }
+        return tmpPath === '' ? '/' : tmpPath;
+    }
+
+    private getUrlFromPath(path: string) {
+        return `file://${path}`;
     }
 }
