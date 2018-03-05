@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 
-import {DirectoryEntry, Entry, File} from "@ionic-native/file";
+import {Entry, File} from "@ionic-native/file";
 
 @Injectable()
 export class FileSystemProvider {
@@ -14,7 +14,6 @@ export class FileSystemProvider {
      */
     public getEntriesOfDir(path: string): Promise<Entry[]> {
         const cleanPath = this.cleanPath(path);
-        const url = this.getUrlFromPath(cleanPath);
 
         const parentPath = this.getParentPath(cleanPath);
         const parentUrl = this.getUrlFromPath(parentPath);
