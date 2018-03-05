@@ -1,4 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
+import {Picture} from "../../models/picture";
+import {ServerProvider} from "../../providers/upload/server";
+import {Entry} from "@ionic-native/file";
+import {Slides} from "ionic-angular";
 
 @Component({
     selector: 'album-visualizer',
@@ -6,6 +10,26 @@ import {Component} from '@angular/core';
 })
 export default class AlbumVisualizerComponent {
 
-    constructor() {
+    @ViewChild(Slides) slides: Slides;
+
+    picturesFIFO: Picture[];
+
+    constructor(public server: ServerProvider) {
+        this.picturesFIFO = [];
     }
+
+    addPicture(entry: Entry): void {
+        this.server.uploadToServer(entry).then(entry => {
+            this.picturesFIFO.push(entry);
+        }).catch(reason => {
+            console.error(reason);
+        });
+    }
+
+    slideChanged() {
+        console.log(this.slides.getActiveIndex());
+        //this.server.goTo(this.picturesFIFO[this.slides.getActiveIndex()]);
+    }
+
+
 }

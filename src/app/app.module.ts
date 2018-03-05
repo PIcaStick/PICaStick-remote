@@ -16,6 +16,8 @@ import {FileSystemProvider} from '../providers/file-system/file-system';
 import PhotosControllerComponent from '../components/photos-controller/photos-controller';
 import AlbumVisualizerComponent from '../components/album-visualizer/album-visualizer';
 import ActionBarComponent from '../components/action-bar/action-bar';
+import {ServerProvider} from '../providers/upload/server';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
     declarations: [
@@ -29,7 +31,8 @@ import ActionBarComponent from '../components/action-bar/action-bar';
     ],
     imports: [
         BrowserModule,
-        IonicModule.forRoot(MyApp)
+        IonicModule.forRoot(MyApp),
+        HttpClientModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -43,7 +46,8 @@ import ActionBarComponent from '../components/action-bar/action-bar';
         SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         File,
-        FileSystemProvider
+        FileSystemProvider,
+        ServerProvider
     ]
 })
 export class AppModule {

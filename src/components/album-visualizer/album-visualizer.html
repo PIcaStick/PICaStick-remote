@@ -1,1 +1,5 @@
-<span>album-visualizer</span>
+<ion-slides (ionSlideDidChange)="slideChanged()">
+    <ion-slide *ngFor="let picture of picturesFIFO">
+        <ion-img src="{{picture.entry.nativeURL}}"></ion-img>
+    </ion-slide>
+</ion-slides>
