@@ -33,7 +33,7 @@ export class FileSystemProvider {
 
     /**
      * Remove the n end trailing slashes
-     * @param path 
+     * @param path
      */
     private cleanPath(path: string): string {
         return path.replace(/(.+?)\/*?$/, '$1');
