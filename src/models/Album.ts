@@ -1,4 +1,4 @@
-import { Picture } from "./picture";
+import { Picture } from "./Picture";
 
 export class Album {
     pictures: Picture[];

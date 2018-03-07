@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Picture } from "../../models/picture";
+import { Picture } from "../../models/Picture";
 import { Slides } from "ionic-angular";
 import { Album } from '../../models/Album';
 
@@ -17,7 +17,7 @@ export default class AlbumVisualizerComponent{
     }
 
     addPicture(newPicture: Picture): void {
-        const isInAlbum = this.album.contains(picture => picture.entry.fullPath === newPicture.entry.fullPath);
+        const isInAlbum = this.album.contains(picture => picture.equals(newPicture));
         if (isInAlbum) {
             return;
         }

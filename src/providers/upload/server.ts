@@ -1,7 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Entry} from "@ionic-native/file";
-import {Picture} from "../../models/picture";
+import {Picture} from "../../models/Picture";
 
 @Injectable()
 export class ServerProvider {

@@ -1,10 +1,14 @@
 import {Entry} from "@ionic-native/file";
 
 export class Picture {
-    entry: Entry;
     hash: string;
 
-    constructor(entry: Entry) {
-        this.entry = entry;
+    constructor(
+        public entry: Entry,
+    ) {
+    }
+
+    equals(picture: Picture): boolean {
+        return picture.entry.fullPath === this.entry.fullPath;
     }
 }

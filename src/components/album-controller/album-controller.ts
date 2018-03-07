@@ -1,6 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import { Entry } from '@ionic-native/file';
-import { Picture } from '../../models/picture';
+import { Picture } from '../../models/Picture';
 
 @Component({
     selector: 'album-controller',
