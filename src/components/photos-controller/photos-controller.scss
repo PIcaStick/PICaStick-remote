@@ -5,7 +5,7 @@ photos-controller {
   overflow: hidden;
 
   dir-content {
-    flex-grow: 1;
+    flex: 1;
     border: 1px solid black;
   }
 
@@ -14,7 +14,8 @@ photos-controller {
   }
 
   album-visualizer {
-    flex-grow: 1;
+    flex: 1;
+    min-height: 0;
     border: 1px solid black;
   }
 }

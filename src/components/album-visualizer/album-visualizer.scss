@@ -2,4 +2,8 @@
 
 album-visualizer {
   @include component-skeleton;
+
+  img {
+    height: 150px !important;
+  }
 }
