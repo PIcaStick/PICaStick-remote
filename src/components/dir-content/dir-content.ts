@@ -10,42 +10,42 @@ import {Events} from "ionic-angular";
     templateUrl: 'dir-content.html'
 })
 export class DirContentComponent implements OnInit {
-    @Output() changeFile: EventEmitter<Entry>;
+    @Output() changeSelectedFile: EventEmitter<Entry>;
 
-    dirContent: Entry[];
+    directoryEntries: Entry[];
     selectedFile: Entry;
 
 
     constructor(
         private fileSystemProvider: FileSystemProvider,
     ) {
-        this.dirContent = [];
+        this.directoryEntries = [];
         this.selectedFile = null;
-        this.changeFile = new EventEmitter();
+        this.changeSelectedFile = new EventEmitter();
     }
 
     ngOnInit() {
-        this.reloadDirContent('/sdcard/DCIM/Camera');
+        this.reloadDirectoryEntries('/sdcard/DCIM/Camera');
     }
 
     onClickEntry(entry: Entry) {
         if (entry.isFile) {
-            this.changeSelectedFile(entry);
+            this.setSelectedFile(entry);
         } else {
-            this.reloadDirContent(entry.fullPath);
+            this.reloadDirectoryEntries(entry.fullPath);
         }
     }
 
-    private changeSelectedFile(file?: Entry) {
+    private setSelectedFile(file?: Entry) {
         this.selectedFile = file;
-        this.changeFile.emit(this.selectedFile);
+        this.changeSelectedFile.emit(this.selectedFile);
     }
 
-    private reloadDirContent(path: string) {
-        this.changeSelectedFile(null);
+    private reloadDirectoryEntries(path: string) {
+        this.setSelectedFile(null);
         this.fileSystemProvider.getEntriesOfDir(path)
             .then(entries => {
-                this.dirContent = entries;
+                this.directoryEntries = entries;
             })
             .catch(reason => {
                 console.error(reason.message);
