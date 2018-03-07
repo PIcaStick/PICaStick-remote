@@ -21,7 +21,8 @@ export default class AlbumVisualizerComponent{
 
 
     addPicture(entry: Entry): void {
-        if (this.isInAlbum(entry)) {
+        const isInAlbum = this.album.some(picture => picture.entry.fullPath === entry.fullPath);
+        if (isInAlbum) {
             return;
         }
 
@@ -42,15 +43,5 @@ export default class AlbumVisualizerComponent{
             this.slides.slidePrev();
         }
         this.album.splice(indexToRemove, 1);
-    }
-
-    isInAlbum(needle: Entry): boolean {
-        for (let i = 0; i < this.album.length; i++) {
-            if (needle.fullPath === this.album[i].entry.fullPath) {
-                return true;
-            }
-        }
-
-         return false;
     }
 }
