@@ -11,7 +11,7 @@ import {IdentificationPage} from "../pages/identification/identification";
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
-import {DirContentComponent} from "../components/dir-content/dir-content";
+import {DiskFilePickerComponent} from "../components/disk-file-picker/disk-file-picker";
 import {FileSystemProvider} from '../providers/file-system/file-system';
 
 import PhotosControllerComponent from '../components/photos-controller/photos-controller';
@@ -29,7 +29,7 @@ import { TokenIdentificationPrivider } from '../providers/token-identification/t
         HomePage,
         AboutPage,
         IdentificationPage,
-        DirContentComponent,
+        DiskFilePickerComponent,
         PhotosControllerComponent,
         AlbumVisualizerComponent,
         ActionBarComponent,
@@ -46,7 +46,7 @@ import { TokenIdentificationPrivider } from '../providers/token-identification/t
         HomePage,
         AboutPage,
         IdentificationPage,
-        DirContentComponent,
+        DiskFilePickerComponent,
     ],
     providers: [
         StatusBar,

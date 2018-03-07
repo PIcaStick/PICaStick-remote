@@ -5,10 +5,10 @@ import {FileSystemProvider} from "../../providers/file-system/file-system";
 
 
 @Component({
-    selector: 'dir-content',
-    templateUrl: 'dir-content.html'
+    selector: 'disk-file-picker',
+    templateUrl: 'disk-file-picker.html'
 })
-export class DirContentComponent implements OnInit {
+export class DiskFilePickerComponent implements OnInit {
     @Output() changeSelectedFile: EventEmitter<Entry>;
 
     directoryEntries: Entry[];
