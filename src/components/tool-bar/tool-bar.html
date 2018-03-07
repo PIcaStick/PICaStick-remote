@@ -1,8 +1,8 @@
 <ion-row>
     <ion-col width-50>
-        <button ion-button full color="light" (click)="arrowDown()">↓</button>
+        <button ion-button full color="light" (click)="arrowDown()" [disabled]="arrowDownDisabled">↓</button>
     </ion-col>
     <ion-col width-50>
-        <button ion-button full color="light" (click)="arrowUp()">↑</button>
+        <button ion-button full color="light" (click)="arrowUp()" [disabled]="arrowUpDisabled">↑</button>
     </ion-col>
 </ion-row>
