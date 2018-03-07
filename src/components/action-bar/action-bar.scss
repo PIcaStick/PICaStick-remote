@@ -2,4 +2,9 @@
 
 action-bar {
   @include component-skeleton;
+  
+  button {
+    font-size: 25px;
+    font-weight: 700;
+  }
 }
