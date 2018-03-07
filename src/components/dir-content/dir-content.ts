@@ -25,7 +25,9 @@ export class DirContentComponent implements OnInit {
         this.events.subscribe("picture:add", () => {
             this.pictureAdd();
         });
-        this.events.subscribe("picture:del", this.pictureDel);
+        this.events.subscribe("picture:del", () => {
+            this.pictureDel();
+        });
     }
 
     changeDirOrActivate(dirOrFile: Entry) {
