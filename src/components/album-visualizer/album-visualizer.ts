@@ -1,6 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
 import {Picture} from "../../models/picture";
-import {ServerProvider} from "../../providers/upload/server";
 import {Entry} from "@ionic-native/file";
 import {Slides} from "ionic-angular";
 
@@ -13,9 +12,7 @@ export default class AlbumVisualizerComponent{
 
     album: Picture[];
 
-    constructor(
-        public server: ServerProvider,
-    ) {
+    constructor() {
         this.album = [];
     }
 
@@ -25,12 +22,8 @@ export default class AlbumVisualizerComponent{
         if (isInAlbum) {
             return;
         }
-
-        this.server.uploadToServer(entry).then(picture => {
-            this.album.push(picture);
-        }).catch(reason => {
-            console.error(reason.message);
-        });
+        const picture = new Picture(entry);
+        this.album.push(picture);
     }
 
     delPicture(): void {
