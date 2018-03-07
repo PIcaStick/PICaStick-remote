@@ -21,15 +21,15 @@ export default class AlbumVisualizerComponent{
 
 
     addPicture(entry: Entry): void {
-        const index = this.getPictureIndex(entry);
-
-        if (index == -1) {
-            this.server.uploadToServer(entry).then(picture => {
-                this.album.push(picture);
-            }).catch(reason => {
-                console.error(reason.message);
-            });
+        if (this.isInAlbum(entry)) {
+            return;
         }
+
+        this.server.uploadToServer(entry).then(picture => {
+            this.album.push(picture);
+        }).catch(reason => {
+            console.error(reason.message);
+        });
     }
 
     delPicture(): void {
@@ -44,13 +44,13 @@ export default class AlbumVisualizerComponent{
         this.album.splice(indexToRemove, 1);
     }
 
-    getPictureIndex(needle: Entry): number {
+    isInAlbum(needle: Entry): boolean {
         for (let i = 0; i < this.album.length; i++) {
             if (needle.fullPath === this.album[i].entry.fullPath) {
-                return i;
+                return true;
             }
         }
 
-         return -1;
+         return false;
     }
 }
