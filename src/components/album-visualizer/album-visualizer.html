@@ -1,5 +1,5 @@
 <ion-slides (ionSlideDidChange)="slideChanged()">
     <ion-slide *ngFor="let picture of picturesFIFO">
-        <ion-img src="{{picture.entry.nativeURL}}"></ion-img>
+        <img src="{{picture.entry.fullPath}}">
     </ion-slide>
 </ion-slides>

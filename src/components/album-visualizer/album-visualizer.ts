@@ -19,7 +19,7 @@ export default class AlbumVisualizerComponent implements OnInit {
         this.picturesFIFO = [];
 
     }
-    
+
     ngOnInit(): void {
         this.events.subscribe('picture:add:found', (entry: Entry) => {
             this.addPicture(entry);
@@ -33,7 +33,7 @@ export default class AlbumVisualizerComponent implements OnInit {
         this.server.uploadToServer(entry).then(picture => {
             this.picturesFIFO.push(picture);
         }).catch(reason => {
-            console.error(reason);
+            console.error(reason.message);
         });
     }
 
