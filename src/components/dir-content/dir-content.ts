@@ -28,20 +28,12 @@ export class DirContentComponent implements OnInit {
         this.reloadDirContent('/sdcard/DCIM/Camera');
     }
 
-    changeDirOrActivate(dirOrFile: Entry) {
-        if (dirOrFile.isFile) {
-            this.activate(dirOrFile);
+    onClickEntry(entry: Entry) {
+        if (entry.isFile) {
+            this.changeSelectedFile(entry);
         } else {
-            this.changeDir(dirOrFile);
+            this.reloadDirContent(entry.fullPath);
         }
-    }
-
-    activate(file: Entry) {
-        this.changeSelectedFile(file);
-    }
-
-    changeDir(dir: Entry) {
-        this.reloadDirContent(dir.fullPath);
     }
 
     private changeSelectedFile(file?: Entry) {
@@ -52,8 +44,8 @@ export class DirContentComponent implements OnInit {
     private reloadDirContent(path: string) {
         this.changeSelectedFile(null);
         this.fileSystemProvider.getEntriesOfDir(path)
-            .then(fileOrDir => {
-                this.dirContent = fileOrDir;
+            .then(entries => {
+                this.dirContent = entries;
             })
             .catch(reason => {
                 console.error(reason.message);
