@@ -1,6 +1,6 @@
 <ion-slides (ionSlideDidChange)="slideChanged()">
-    <ion-slide *ngFor="let picture of picturesFIFO">
+    <ion-slide *ngFor="let picture of picturesFIFO; let i = index">
         <img src="{{picture.entry.fullPath}}">
-        <div>{{currentPicture}}/{{picturesFIFO.length}}</div>
+        <div>{{i + 1}}/{{picturesFIFO.length}}</div>
     </ion-slide>
 </ion-slides>
