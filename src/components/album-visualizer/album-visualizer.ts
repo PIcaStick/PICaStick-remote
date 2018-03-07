@@ -2,6 +2,7 @@ import {Component, ViewChild} from '@angular/core';
 import {Picture} from "../../models/picture";
 import {Entry} from "@ionic-native/file";
 import {Slides} from "ionic-angular";
+import { Album } from '../../models/Album';
 
 @Component({
     selector: 'album-visualizer',
@@ -10,26 +11,24 @@ import {Slides} from "ionic-angular";
 export default class AlbumVisualizerComponent{
     @ViewChild('slides') slides: Slides;
 
-    album: Picture[];
+    album: Album;
 
     constructor() {
-        this.album = [];
+        this.album = new Album();
     }
 
-
     addPicture(entry: Entry): void {
-        const isInAlbum = this.album.some(picture => picture.entry.fullPath === entry.fullPath);
+        const isInAlbum = this.album.contains(picture => picture.entry.fullPath === entry.fullPath);
         if (isInAlbum) {
             return;
         }
 
         const picture = new Picture(entry);
-        this.album.push(picture);
+        this.album.addPicture(picture);
     }
 
     delPicture(): void {
-        const albumIsEmpty = this.album.length === 0;
-        if (albumIsEmpty) {
+        if (this.album.isEmpty()) {
             return;
         }
 
@@ -37,6 +36,6 @@ export default class AlbumVisualizerComponent{
         if (this.slides.isEnd()) {
             this.slides.slidePrev();
         }
-        this.album.splice(indexToRemove, 1);
+        this.album.pictures = this.album.pictures.filter((_, index) => index !== indexToRemove);
     }
 }
