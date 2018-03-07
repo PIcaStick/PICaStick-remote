@@ -7,6 +7,8 @@ import {HomePage} from "../pages/home/home";
 import {AboutPage} from "../pages/about/about";
 import {IdentificationPage} from "../pages/identification/identification";
 
+import MenuPage from "../models/MenuPage";
+
 @Component({
     templateUrl: 'app.html'
 })
@@ -15,10 +17,26 @@ export class MyApp {
 
     rootPage: any = HomePage;
 
+    pages: MenuPage[];
+
     constructor(platform: Platform,
                 statusBar: StatusBar,
                 splashScreen: SplashScreen,
                 private menu: MenuController) {
+
+        this.pages = [{
+            name: 'Home',
+            component: HomePage,
+        },
+        {
+            name: 'Identification',
+            component: IdentificationPage,
+        },
+        {
+            name: 'About',
+            component: AboutPage,
+        }];
+    
         platform.ready().then(() => {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
@@ -27,18 +45,8 @@ export class MyApp {
         });
     }
 
-    about() {
-        this.nav.setRoot(AboutPage);
-        this.menu.close();
-    }
-
-    home() {
-        this.nav.setRoot(HomePage);
-        this.menu.close();
-    }
-
-    identification() {
-        this.nav.setRoot(IdentificationPage);
+    goToPage(page: MenuPage) {
+        this.nav.setRoot(page.component);
         this.menu.close();
     }
 }
