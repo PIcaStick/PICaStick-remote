@@ -8,7 +8,6 @@ import { TokenIdentificationPrivider } from '../../providers/token-identificatio
 })
 export default class TokenDefinitionComponent {
 
-
     constructor(
         private tokenIdenfication: TokenIdentificationPrivider,
     ) {
