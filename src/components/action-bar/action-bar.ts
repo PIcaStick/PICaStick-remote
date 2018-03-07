@@ -21,7 +21,6 @@ export default class ActionBarComponent {
     }
 
     arrowUp(): void {
-        this.events.publish("picture:delete");
         this.clickArrowUp.emit();
     }
 }

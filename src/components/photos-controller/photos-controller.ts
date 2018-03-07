@@ -25,6 +25,6 @@ export default class PhotosControllerComponent {
     }
 
     onClickArrowUp() {
-        console.log('click up');
+        this.albumVisualizer.delPicture();
     }
 }

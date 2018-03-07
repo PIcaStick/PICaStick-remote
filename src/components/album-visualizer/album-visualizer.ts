@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, OnDestroy} from '@angular/core';
+import {Component,ViewChild} from '@angular/core';
 import {Picture} from "../../models/picture";
 import {ServerProvider} from "../../providers/upload/server";
 import {Entry} from "@ionic-native/file";
@@ -8,7 +8,7 @@ import {Events, Slides} from "ionic-angular";
     selector: 'album-visualizer',
     templateUrl: 'album-visualizer.html'
 })
-export default class AlbumVisualizerComponent implements OnInit, OnDestroy {
+export default class AlbumVisualizerComponent{
 
     @ViewChild(Slides) slides: Slides;
 
@@ -19,19 +19,6 @@ export default class AlbumVisualizerComponent implements OnInit, OnDestroy {
         private events: Events,
     ) {
         this.picturesFIFO = [];
-        this.removeHandler = this.removeHandler.bind(this);
-    }
-
-    ngOnInit(): void {
-        this.events.subscribe("picture:delete", this.removeHandler);
-    }
-    
-    ngOnDestroy(): void {
-        this.events.unsubscribe("picture:delete", this.removeHandler);
-    }
-
-    removeHandler() {
-        this.delPicture();
     }
 
 
