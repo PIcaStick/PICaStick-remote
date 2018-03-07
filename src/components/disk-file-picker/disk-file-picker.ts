@@ -1,12 +1,12 @@
-import {Component, OnInit, EventEmitter, Output} from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
-import {Entry} from "@ionic-native/file";
-import {FileSystemProvider} from "../../providers/file-system/file-system";
+import { Entry } from "@ionic-native/file";
+import { FileSystemProvider } from "../../providers/file-system/file-system";
 
 
 @Component({
     selector: 'disk-file-picker',
-    templateUrl: 'disk-file-picker.html'
+    templateUrl: 'disk-file-picker.html',
 })
 export class DiskFilePickerComponent implements OnInit {
     @Output() changeSelectedFile: EventEmitter<Entry>;

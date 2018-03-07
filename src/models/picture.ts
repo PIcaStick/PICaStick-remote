@@ -1,4 +1,4 @@
-import {Entry} from "@ionic-native/file";
+import { Entry } from "@ionic-native/file";
 
 export class Picture {
     hash: string;

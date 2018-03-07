@@ -1,17 +1,14 @@
-import {Component, Output, EventEmitter} from '@angular/core';
-import {Events} from 'ionic-angular';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'tool-bar',
-    templateUrl: 'tool-bar.html'
+    templateUrl: 'tool-bar.html',
 })
 export default class ToolBarComponent {
     @Output() clickArrowDown: EventEmitter<any>;
     @Output() clickArrowUp: EventEmitter<any>;
 
-    constructor(
-        public events: Events,
-    ) {
+    constructor() {
         this.clickArrowDown = new EventEmitter();
         this.clickArrowUp = new EventEmitter();
     }

@@ -5,7 +5,7 @@ import { Album } from '../../models/Album';
 
 @Component({
     selector: 'album-visualizer',
-    templateUrl: 'album-visualizer.html'
+    templateUrl: 'album-visualizer.html',
 })
 export default class AlbumVisualizerComponent{
     @ViewChild('slides') slides: Slides;

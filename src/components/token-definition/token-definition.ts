@@ -1,10 +1,10 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { TokenIdentificationPrivider } from '../../providers/token-identification/token-identification';
 
 @Component({
     selector: 'token-definition',
-    templateUrl: 'token-definition.html'
+    templateUrl: 'token-definition.html',
 })
 export default class TokenDefinitionComponent {
 

@@ -1,10 +1,10 @@
-import {Component, ViewChild} from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Entry } from '@ionic-native/file';
 import { Picture } from '../../models/Picture';
 
 @Component({
     selector: 'album-controller',
-    templateUrl: 'album-controller.html'
+    templateUrl: 'album-controller.html',
 })
 export default class AlbumControllerComponent {
     @ViewChild('albumVisualizer') albumVisualizer;
