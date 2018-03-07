@@ -22,7 +22,9 @@ export class DirContentComponent implements OnInit {
 
     ngOnInit() {
         this.reloadDirContent('/sdcard');
-        this.events.subscribe("picture:add", this.pictureAdd);
+        this.events.subscribe("picture:add", () => {
+            this.pictureAdd();
+        });
         this.events.subscribe("picture:del", this.pictureDel);
     }
 
@@ -59,14 +61,9 @@ export class DirContentComponent implements OnInit {
     }
 
     private pictureAdd() {
-        console.log('add');
-        console.log(this.selectedFile);
-        console.log("add", this.selectedFile.nativeURL);
-        return;
-
-        //if (this.selectedFile != null) {
-        //    this.events.publish('picture:add:found', this.selectedFile);
-        //}
+        if (this.selectedFile != null) {
+            this.events.publish('picture:add:found', this.selectedFile);
+        }
     }
 
     private pictureDel() {
