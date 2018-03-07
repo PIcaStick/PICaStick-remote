@@ -2,7 +2,6 @@ import {Component, OnInit, EventEmitter, Output} from '@angular/core';
 
 import {Entry} from "@ionic-native/file";
 import {FileSystemProvider} from "../../providers/file-system/file-system";
-import {Events} from "ionic-angular";
 
 
 @Component({

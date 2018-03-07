@@ -2,7 +2,7 @@ import {Component,ViewChild} from '@angular/core';
 import {Picture} from "../../models/picture";
 import {ServerProvider} from "../../providers/upload/server";
 import {Entry} from "@ionic-native/file";
-import {Events, Slides} from "ionic-angular";
+import {Slides} from "ionic-angular";
 
 @Component({
     selector: 'album-visualizer',
@@ -16,7 +16,6 @@ export default class AlbumVisualizerComponent{
 
     constructor(
         public server: ServerProvider,
-        private events: Events,
     ) {
         this.picturesFIFO = [];
     }
