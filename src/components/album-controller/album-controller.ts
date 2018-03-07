@@ -1,5 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import { Entry } from '@ionic-native/file';
+import { Picture } from '../../models/picture';
 
 @Component({
     selector: 'album-controller',
@@ -20,7 +21,8 @@ export default class AlbumControllerComponent {
 
     onClickArrowDown() {
         if (this.selectedDiskFile) {
-            this.albumVisualizer.addPicture(this.selectedDiskFile);
+            const newPicture = new Picture(this.selectedDiskFile);
+            this.albumVisualizer.addPicture(newPicture);
         }
     }
 

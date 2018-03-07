@@ -1,7 +1,6 @@
-import {Component, ViewChild} from '@angular/core';
-import {Picture} from "../../models/picture";
-import {Entry} from "@ionic-native/file";
-import {Slides} from "ionic-angular";
+import { Component, ViewChild } from '@angular/core';
+import { Picture } from "../../models/picture";
+import { Slides } from "ionic-angular";
 import { Album } from '../../models/Album';
 
 @Component({
@@ -17,14 +16,13 @@ export default class AlbumVisualizerComponent{
         this.album = new Album();
     }
 
-    addPicture(entry: Entry): void {
-        const isInAlbum = this.album.contains(picture => picture.entry.fullPath === entry.fullPath);
+    addPicture(newPicture: Picture): void {
+        const isInAlbum = this.album.contains(picture => picture.entry.fullPath === newPicture.entry.fullPath);
         if (isInAlbum) {
             return;
         }
 
-        const picture = new Picture(entry);
-        this.album.addPicture(picture);
+        this.album.addPicture(newPicture);
     }
 
     delPicture(): void {
