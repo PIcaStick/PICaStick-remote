@@ -21,6 +21,7 @@ import {ServerProvider} from '../providers/upload/server';
 import {HttpClientModule} from "@angular/common/http";
 
 import TokenDefinitionComponent from '../components/token-definition/token-definition';
+import { TokenIdentificationPrivider } from '../providers/token-identification/token-identification';
 
 @NgModule({
     declarations: [
@@ -53,7 +54,8 @@ import TokenDefinitionComponent from '../components/token-definition/token-defin
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         File,
         FileSystemProvider,
-        ServerProvider
+        ServerProvider,
+        TokenIdentificationPrivider,
     ]
 })
 export class AppModule {

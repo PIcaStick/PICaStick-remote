@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { TokenIdentificationPrivider } from '../../providers/token-identification/token-identification';
 
 @Component({
     selector: 'token-definition',
@@ -6,6 +8,19 @@ import {Component} from '@angular/core';
 })
 export default class TokenDefinitionComponent {
 
-    constructor() {
+
+    constructor(
+        private tokenIdenfication: TokenIdentificationPrivider,
+    ) {
+    }
+
+    onSubmit(form: NgForm) {
+        if (!form.valid) {
+            return;
+        }
+
+        const { token } = form.value;
+        this.tokenIdenfication.setToken(token);
+        form.reset();
     }
 }
