@@ -1,10 +1,16 @@
 import { Picture } from "./Picture";
+import { Subject } from "rxjs/Subject";
 
 export class Album {
     pictures: Picture[];
+    onPictureUpdate: Subject<Picture[]>;
 
     constructor() {
         this.pictures = [];
+        this.onPictureUpdate = new Subject();
+        this.onPictureUpdate.subscribe(pictures => {
+          this.pictures = pictures;
+        });
     }
 
     /**
@@ -27,10 +33,12 @@ export class Album {
      * @param picture Picture to add in the album
      */
     addPicture(picture: Picture) {
-      this.pictures.push(picture);
+      const newPictures = [...this.pictures, picture];
+      this.onPictureUpdate.next(newPictures);
     }
 
     removePicture(indexToRemove: number) {
-      this.pictures = this.pictures.filter((_, index) => index !== indexToRemove);
+      const newPictures = this.pictures.filter((_, index) => index !== indexToRemove);
+      this.onPictureUpdate.next(newPictures);
     }
 }

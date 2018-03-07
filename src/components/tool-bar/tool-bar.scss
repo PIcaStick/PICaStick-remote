@@ -4,7 +4,7 @@ tool-bar {
   @include component-skeleton;
   
   button {
-    font-size: 25px;
-    font-weight: 700;
+    font-size: 25px !important;
+    font-weight: 700 !important;
   }
 }
