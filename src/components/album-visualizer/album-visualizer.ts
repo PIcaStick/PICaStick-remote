@@ -55,9 +55,15 @@ export default class AlbumVisualizerComponent implements OnInit, OnDestroy {
     }
 
     delPicture(): void {
-        if (this.picturesFIFO.length !== 0) {
-            this.picturesFIFO.splice(this.slides.getActiveIndex(), 1);
+        if (this.picturesFIFO.length === 0) {
+            return;
         }
+
+        const indexToRemove = this.slides.getActiveIndex();
+        if (this.slides.isEnd()) {
+            this.slides.slidePrev();
+        }
+        this.picturesFIFO.splice(indexToRemove, 1);
     }
 
     slideChanged() {
