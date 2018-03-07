@@ -19,7 +19,6 @@ export default class AlbumVisualizerComponent implements OnInit {
                 private events: Events) {
         this.picturesFIFO = [];
         this.currentPicture = 0;
-
     }
 
     ngOnInit(): void {
@@ -32,10 +31,14 @@ export default class AlbumVisualizerComponent implements OnInit {
     }
 
     addPicture(entry: Entry): void {
-        this.server.uploadToServer(entry).then(picture => {
-            this.picturesFIFO.push(picture);
-        }).catch(reason => {
-            console.error(reason.message);
+        this.findImage(entry).then(index => {
+            if (index == -1) {
+                this.server.uploadToServer(entry).then(picture => {
+                    this.picturesFIFO.push(picture);
+                }).catch(reason => {
+                    console.error(reason.message);
+                });
+            }
         });
     }
 
@@ -52,4 +55,21 @@ export default class AlbumVisualizerComponent implements OnInit {
     }
 
 
+    findImage(needle: Entry): Promise<number> {
+        return new Promise(resolve => {
+            let finded = false;
+
+            for (let i = 0; i < this.picturesFIFO.length; i++) {
+                if (needle.fullPath === this.picturesFIFO[i].entry.fullPath) {
+                    resolve(i);
+                    finded = true;
+                    break;
+                }
+            }
+
+            if (!finded) {
+                resolve(-1);
+            }
+        });
+    }
 }
