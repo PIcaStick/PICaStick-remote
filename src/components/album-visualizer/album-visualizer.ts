@@ -22,12 +22,14 @@ export default class AlbumVisualizerComponent{
         if (isInAlbum) {
             return;
         }
+
         const picture = new Picture(entry);
         this.album.push(picture);
     }
 
     delPicture(): void {
-        if (this.album.length === 0) {
+        const albumIsEmpty = this.album.length === 0;
+        if (albumIsEmpty) {
             return;
         }
 
