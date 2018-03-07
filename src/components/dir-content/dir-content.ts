@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy, EventEmitter, Output} from '@angular/core';
 
 import {Entry} from "@ionic-native/file";
 import {FileSystemProvider} from "../../providers/file-system/file-system";
@@ -10,9 +10,11 @@ import {Events} from "ionic-angular";
     templateUrl: 'dir-content.html'
 })
 export class DirContentComponent implements OnInit, OnDestroy {
+    @Output() changeFile: EventEmitter<Entry>;
 
     dirContent: Entry[];
     selectedFile: Entry;
+
 
     constructor(
         private fileSystemProvider: FileSystemProvider,
@@ -21,6 +23,7 @@ export class DirContentComponent implements OnInit, OnDestroy {
         this.dirContent = [];
         this.selectedFile = null;
         this.addPictureHandler = this.addPictureHandler.bind(this);
+        this.changeFile = new EventEmitter();
     }
 
     ngOnInit() {
@@ -54,6 +57,7 @@ export class DirContentComponent implements OnInit, OnDestroy {
 
     private changeSelectedFile(file: Entry) {
         this.selectedFile = file;
+        this.changeFile.emit(this.selectedFile);
     }
 
     private reloadDirContent(path: string) {

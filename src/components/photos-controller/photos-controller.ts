@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import { Entry } from '@ionic-native/file';
 
 @Component({
     selector: 'photos-controller',
@@ -6,6 +7,13 @@ import {Component} from '@angular/core';
 })
 export default class PhotosControllerComponent {
 
+    selectedDiskFile: Entry;
+
     constructor() {
+        this.selectedDiskFile = null;
+    }
+
+    onChangeFile(file: Entry) {
+        this.selectedDiskFile = file;
     }
 }
