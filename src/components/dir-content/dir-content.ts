@@ -21,7 +21,7 @@ export class DirContentComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.reloadDirContent('/sdcard');
+        this.reloadDirContent('/sdcard/DCIM/Camera');
         this.events.subscribe("picture:add", () => {
             this.pictureAdd();
         });
