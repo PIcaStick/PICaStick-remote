@@ -9,14 +9,6 @@ import {Events, Slides} from "ionic-angular";
     templateUrl: 'album-visualizer.html'
 })
 export default class AlbumVisualizerComponent implements OnInit {
-    ngOnInit(): void {
-        this.events.subscribe('picture:add:found', (entry: Entry) => {
-            this.addPicture(entry);
-        });
-        this.events.subscribe("picture:del:found", (entry: Entry) => {
-            this.delPicture(entry);
-        });
-    }
 
     @ViewChild(Slides) slides: Slides;
 
@@ -26,6 +18,15 @@ export default class AlbumVisualizerComponent implements OnInit {
                 private events: Events) {
         this.picturesFIFO = [];
 
+    }
+    
+    ngOnInit(): void {
+        this.events.subscribe('picture:add:found', (entry: Entry) => {
+            this.addPicture(entry);
+        });
+        this.events.subscribe("picture:del:found", (entry: Entry) => {
+            this.delPicture(entry);
+        });
     }
 
     addPicture(entry: Entry): void {
