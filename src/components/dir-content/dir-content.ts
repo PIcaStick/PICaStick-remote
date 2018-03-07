@@ -25,9 +25,6 @@ export class DirContentComponent implements OnInit {
         this.events.subscribe("picture:add", () => {
             this.pictureAdd();
         });
-        this.events.subscribe("picture:del", () => {
-            this.pictureDel();
-        });
     }
 
     changeDirOrActivate(dirOrFile: Entry) {
@@ -48,7 +45,6 @@ export class DirContentComponent implements OnInit {
 
     private changeSelectedFile(file: Entry) {
         this.selectedFile = file;
-        console.log(this.selectedFile);
     }
 
     private reloadDirContent(path: string) {
@@ -65,12 +61,6 @@ export class DirContentComponent implements OnInit {
     private pictureAdd() {
         if (this.selectedFile != null) {
             this.events.publish('picture:add:found', this.selectedFile);
-        }
-    }
-
-    private pictureDel() {
-        if (this.selectedFile != null) {
-            this.events.publish('picture:del:found', this.selectedFile);
         }
     }
 }

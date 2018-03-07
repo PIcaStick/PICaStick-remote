@@ -13,10 +13,12 @@ export default class AlbumVisualizerComponent implements OnInit {
     @ViewChild(Slides) slides: Slides;
 
     picturesFIFO: Picture[];
+    currentPicture: number;
 
     constructor(public server: ServerProvider,
                 private events: Events) {
         this.picturesFIFO = [];
+        this.currentPicture = 0;
 
     }
 
@@ -24,8 +26,8 @@ export default class AlbumVisualizerComponent implements OnInit {
         this.events.subscribe('picture:add:found', (entry: Entry) => {
             this.addPicture(entry);
         });
-        this.events.subscribe("picture:del:found", (entry: Entry) => {
-            this.delPicture(entry);
+        this.events.subscribe("picture:delete", () => {
+            this.delPicture();
         });
     }
 
@@ -37,12 +39,16 @@ export default class AlbumVisualizerComponent implements OnInit {
         });
     }
 
-    delPicture(entry: Entry): void {
-        console.log("del picture");
+    delPicture(): void {
+        console.log(this.picturesFIFO.length, this.currentPicture);
+        if (this.picturesFIFO.length !== 0) {
+            this.picturesFIFO.splice(this.currentPicture, 1);
+        }
     }
 
     slideChanged() {
         console.log(this.slides.getActiveIndex());
+        this.currentPicture = this.slides.getActiveIndex();
         //this.server.goTo(this.picturesFIFO[this.slides.getActiveIndex()]);
     }
 
