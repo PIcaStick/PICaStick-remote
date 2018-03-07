@@ -2,7 +2,7 @@
     <ion-col>
         <ion-list>
             <ion-item *ngFor="let dirOrFile of dirContent" 
-                    [ngClass]="{'selected-file': dirOrFile == selectedFile}" 
+                    [ngClass]="{'selected-file': dirOrFile.fullPath == selectedFile?.fullPath}" 
                     (click)="changeDirOrActivate(dirOrFile)">{{dirOrFile.name}}
             </ion-item>
         </ion-list>
