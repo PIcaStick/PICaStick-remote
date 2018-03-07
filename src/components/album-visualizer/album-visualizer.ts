@@ -1,4 +1,4 @@
-import {Component,ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {Picture} from "../../models/picture";
 import {ServerProvider} from "../../providers/upload/server";
 import {Entry} from "@ionic-native/file";
@@ -10,7 +10,7 @@ import {Slides} from "ionic-angular";
 })
 export default class AlbumVisualizerComponent{
 
-    @ViewChild(Slides) slides: Slides;
+    @ViewChild('slides') slides: Slides;
 
     picturesFIFO: Picture[];
 
