@@ -2,10 +2,10 @@ import {Component, ViewChild} from '@angular/core';
 import { Entry } from '@ionic-native/file';
 
 @Component({
-    selector: 'photos-controller',
-    templateUrl: 'photos-controller.html'
+    selector: 'album-controller',
+    templateUrl: 'album-controller.html'
 })
-export default class PhotosControllerComponent {
+export default class AlbumControllerComponent {
     @ViewChild('albumVisualizer') albumVisualizer;
 
     selectedDiskFile: Entry;
@@ -14,7 +14,7 @@ export default class PhotosControllerComponent {
         this.selectedDiskFile = null;
     }
 
-    onChangeFile(file?: Entry) {
+    onChangeSelectedDiskFile(file?: Entry) {
         this.selectedDiskFile = file;
     }
 

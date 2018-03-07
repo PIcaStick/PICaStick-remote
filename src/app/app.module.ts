@@ -14,7 +14,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {DiskFilePickerComponent} from "../components/disk-file-picker/disk-file-picker";
 import {FileSystemProvider} from '../providers/file-system/file-system';
 
-import PhotosControllerComponent from '../components/photos-controller/photos-controller';
+import AlbumControllerComponent from '../components/album-controller/album-controller';
 import AlbumVisualizerComponent from '../components/album-visualizer/album-visualizer';
 import ToolBarComponent from '../components/tool-bar/tool-bar';
 import {ServerProvider} from '../providers/upload/server';
@@ -30,7 +30,7 @@ import { TokenIdentificationPrivider } from '../providers/token-identification/t
         AboutPage,
         IdentificationPage,
         DiskFilePickerComponent,
-        PhotosControllerComponent,
+        AlbumControllerComponent,
         AlbumVisualizerComponent,
         ToolBarComponent,
         TokenDefinitionComponent,
