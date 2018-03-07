@@ -16,7 +16,7 @@ import {FileSystemProvider} from '../providers/file-system/file-system';
 
 import PhotosControllerComponent from '../components/photos-controller/photos-controller';
 import AlbumVisualizerComponent from '../components/album-visualizer/album-visualizer';
-import ActionBarComponent from '../components/action-bar/action-bar';
+import ToolBarComponent from '../components/tool-bar/tool-bar';
 import {ServerProvider} from '../providers/upload/server';
 import {HttpClientModule} from "@angular/common/http";
 
@@ -32,7 +32,7 @@ import { TokenIdentificationPrivider } from '../providers/token-identification/t
         DiskFilePickerComponent,
         PhotosControllerComponent,
         AlbumVisualizerComponent,
-        ActionBarComponent,
+        ToolBarComponent,
         TokenDefinitionComponent,
     ],
     imports: [
