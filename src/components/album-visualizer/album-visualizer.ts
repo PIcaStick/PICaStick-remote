@@ -13,12 +13,10 @@ export default class AlbumVisualizerComponent implements OnInit {
     @ViewChild(Slides) slides: Slides;
 
     picturesFIFO: Picture[];
-    currentPicture: number;
 
     constructor(public server: ServerProvider,
                 private events: Events) {
         this.picturesFIFO = [];
-        this.currentPicture = 0;
     }
 
     ngOnInit(): void {
@@ -43,14 +41,12 @@ export default class AlbumVisualizerComponent implements OnInit {
     }
 
     delPicture(): void {
-        console.log(this.picturesFIFO.length, this.currentPicture);
         if (this.picturesFIFO.length !== 0) {
-            this.picturesFIFO.splice(this.currentPicture, 1);
+            this.picturesFIFO.splice(this.slides.getActiveIndex(), 1);
         }
     }
 
     slideChanged() {
-        this.currentPicture = this.slides.getActiveIndex();
         //this.server.goTo(this.picturesFIFO[this.slides.getActiveIndex()]);
     }
 
