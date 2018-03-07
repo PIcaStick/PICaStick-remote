@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Input } from '@angular/core';
 import { Picture } from "../../models/Picture";
 import { Slides } from "ionic-angular";
 import { Album } from '../../models/Album';
@@ -10,10 +10,9 @@ import { Album } from '../../models/Album';
 export default class AlbumVisualizerComponent{
     @ViewChild('slides') slides: Slides;
 
-    album: Album;
+    @Input() album: Album;
 
     constructor() {
-        this.album = new Album();
     }
 
     addPicture(newPicture: Picture): void {
