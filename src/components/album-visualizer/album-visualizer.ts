@@ -47,7 +47,6 @@ export default class AlbumVisualizerComponent implements OnInit {
     }
 
     slideChanged() {
-        console.log(this.slides.getActiveIndex());
         this.currentPicture = this.slides.getActiveIndex();
         //this.server.goTo(this.picturesFIFO[this.slides.getActiveIndex()]);
     }
