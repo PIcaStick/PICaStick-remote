@@ -16,4 +16,13 @@ export default class PhotosControllerComponent {
     onChangeFile(file: Entry) {
         this.selectedDiskFile = file;
     }
+
+    onClickArrowDown() {
+        console.log('click down');
+        console.log(this.selectedDiskFile);
+    }
+
+    onClickArrowUp() {
+        console.log('click up');
+    }
 }

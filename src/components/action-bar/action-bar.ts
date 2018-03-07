@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Output, EventEmitter} from '@angular/core';
 import {Events} from 'ionic-angular';
 
 @Component({
@@ -6,17 +6,23 @@ import {Events} from 'ionic-angular';
     templateUrl: 'action-bar.html'
 })
 export default class ActionBarComponent {
+    @Output() clickArrowDown: EventEmitter<any>;
+    @Output() clickArrowUp: EventEmitter<any>;
 
     constructor(
         public events: Events,
     ) {
+        this.clickArrowDown = new EventEmitter();
+        this.clickArrowUp = new EventEmitter();
     }
 
-    addPicture(): void {
+    arrowDown(): void {
         this.events.publish('picture:add');
+        this.clickArrowDown.emit(null);
     }
 
-    delPicture(): void {
+    arrowUp(): void {
         this.events.publish("picture:delete");
+        this.clickArrowUp.emit(null);
     }
 }
