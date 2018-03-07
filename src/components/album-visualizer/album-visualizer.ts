@@ -19,22 +19,15 @@ export default class AlbumVisualizerComponent implements OnInit, OnDestroy {
         private events: Events,
     ) {
         this.picturesFIFO = [];
-        this.addHandler = this.addHandler.bind(this);
         this.removeHandler = this.removeHandler.bind(this);
     }
 
     ngOnInit(): void {
-        this.events.subscribe('picture:add:found', this.addHandler);
         this.events.subscribe("picture:delete", this.removeHandler);
     }
     
     ngOnDestroy(): void {
-        this.events.unsubscribe('picture:add:found', this.addHandler);
         this.events.unsubscribe("picture:delete", this.removeHandler);
-    }
-
-    addHandler(entry: Entry) {
-        this.addPicture(entry);
     }
 
     removeHandler() {

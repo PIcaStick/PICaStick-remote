@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import { Entry } from '@ionic-native/file';
 
 @Component({
@@ -6,6 +6,7 @@ import { Entry } from '@ionic-native/file';
     templateUrl: 'photos-controller.html'
 })
 export default class PhotosControllerComponent {
+    @ViewChild('albumVisualizer') albumVisualizer;
 
     selectedDiskFile: Entry;
 
@@ -18,8 +19,9 @@ export default class PhotosControllerComponent {
     }
 
     onClickArrowDown() {
-        console.log('click down');
-        console.log(this.selectedDiskFile);
+        if (this.selectedDiskFile) {
+            this.albumVisualizer.addPicture(this.selectedDiskFile);
+        }
     }
 
     onClickArrowUp() {

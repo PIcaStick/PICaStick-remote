@@ -17,12 +17,11 @@ export default class ActionBarComponent {
     }
 
     arrowDown(): void {
-        this.events.publish('picture:add');
-        this.clickArrowDown.emit(null);
+        this.clickArrowDown.emit();
     }
 
     arrowUp(): void {
         this.events.publish("picture:delete");
-        this.clickArrowUp.emit(null);
+        this.clickArrowUp.emit();
     }
 }
