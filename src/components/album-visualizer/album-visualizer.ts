@@ -25,7 +25,7 @@ export default class AlbumVisualizerComponent{
         this.album.addPicture(newPicture);
     }
 
-    delPicture(): void {
+    removeCurrentPicture(): void {
         if (this.album.isEmpty()) {
             return;
         }
@@ -34,6 +34,6 @@ export default class AlbumVisualizerComponent{
         if (this.slides.isEnd()) {
             this.slides.slidePrev();
         }
-        this.album.pictures = this.album.pictures.filter((_, index) => index !== indexToRemove);
+        this.album.removePicture(indexToRemove);
     }
 }

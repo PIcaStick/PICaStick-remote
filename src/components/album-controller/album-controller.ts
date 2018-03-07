@@ -27,6 +27,6 @@ export default class AlbumControllerComponent {
     }
 
     onClickArrowUp() {
-        this.albumVisualizer.delPicture();
+        this.albumVisualizer.removeCurrentPicture();
     }
 }

@@ -29,4 +29,8 @@ export class Album {
     addPicture(picture: Picture) {
       this.pictures.push(picture);
     }
+
+    removePicture(indexToRemove: number) {
+      this.pictures = this.pictures.filter((_, index) => index !== indexToRemove);
+    }
 }
