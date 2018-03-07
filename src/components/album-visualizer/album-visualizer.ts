@@ -11,12 +11,12 @@ import {Slides} from "ionic-angular";
 export default class AlbumVisualizerComponent{
     @ViewChild('slides') slides: Slides;
 
-    picturesFIFO: Picture[];
+    album: Picture[];
 
     constructor(
         public server: ServerProvider,
     ) {
-        this.picturesFIFO = [];
+        this.album = [];
     }
 
 
@@ -24,7 +24,7 @@ export default class AlbumVisualizerComponent{
         this.findImage(entry).then(index => {
             if (index == -1) {
                 this.server.uploadToServer(entry).then(picture => {
-                    this.picturesFIFO.push(picture);
+                    this.album.push(picture);
                 }).catch(reason => {
                     console.error(reason.message);
                 });
@@ -33,7 +33,7 @@ export default class AlbumVisualizerComponent{
     }
 
     delPicture(): void {
-        if (this.picturesFIFO.length === 0) {
+        if (this.album.length === 0) {
             return;
         }
 
@@ -41,15 +41,15 @@ export default class AlbumVisualizerComponent{
         if (this.slides.isEnd()) {
             this.slides.slidePrev();
         }
-        this.picturesFIFO.splice(indexToRemove, 1);
+        this.album.splice(indexToRemove, 1);
     }
 
     findImage(needle: Entry): Promise<number> {
         return new Promise(resolve => {
             let finded = false;
 
-            for (let i = 0; i < this.picturesFIFO.length; i++) {
-                if (needle.fullPath === this.picturesFIFO[i].entry.fullPath) {
+            for (let i = 0; i < this.album.length; i++) {
+                if (needle.fullPath === this.album[i].entry.fullPath) {
                     resolve(i);
                     finded = true;
                     break;
