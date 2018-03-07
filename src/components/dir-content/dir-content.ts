@@ -14,8 +14,10 @@ export class DirContentComponent implements OnInit, OnDestroy {
     dirContent: Entry[];
     selectedFile: Entry;
 
-    constructor(private fileSystemProvider: FileSystemProvider,
-                private events: Events) {
+    constructor(
+        private fileSystemProvider: FileSystemProvider,
+        private events: Events,
+    ) {
         this.dirContent = [];
         this.selectedFile = null;
         this.addPictureHandler = this.addPictureHandler.bind(this);

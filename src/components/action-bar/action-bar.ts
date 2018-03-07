@@ -7,7 +7,9 @@ import {Events} from 'ionic-angular';
 })
 export default class ActionBarComponent {
 
-    constructor(public events: Events) {
+    constructor(
+        public events: Events,
+    ) {
     }
 
     addPicture(): void {

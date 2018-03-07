@@ -14,8 +14,10 @@ export default class AlbumVisualizerComponent implements OnInit, OnDestroy {
 
     picturesFIFO: Picture[];
 
-    constructor(public server: ServerProvider,
-                private events: Events) {
+    constructor(
+        public server: ServerProvider,
+        private events: Events,
+    ) {
         this.picturesFIFO = [];
         this.addHandler = this.addHandler.bind(this);
         this.removeHandler = this.removeHandler.bind(this);
