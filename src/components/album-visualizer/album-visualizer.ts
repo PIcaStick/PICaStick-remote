@@ -9,7 +9,6 @@ import {Slides} from "ionic-angular";
     templateUrl: 'album-visualizer.html'
 })
 export default class AlbumVisualizerComponent{
-
     @ViewChild('slides') slides: Slides;
 
     picturesFIFO: Picture[];
@@ -44,11 +43,6 @@ export default class AlbumVisualizerComponent{
         }
         this.picturesFIFO.splice(indexToRemove, 1);
     }
-
-    slideChanged() {
-        //this.server.goTo(this.picturesFIFO[this.slides.getActiveIndex()]);
-    }
-
 
     findImage(needle: Entry): Promise<number> {
         return new Promise(resolve => {
