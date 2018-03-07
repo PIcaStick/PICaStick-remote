@@ -55,7 +55,7 @@ export class DirContentComponent implements OnInit, OnDestroy {
         this.reloadDirContent(dir.fullPath);
     }
 
-    private changeSelectedFile(file: Entry) {
+    private changeSelectedFile(file?: Entry) {
         this.selectedFile = file;
         this.changeFile.emit(this.selectedFile);
     }

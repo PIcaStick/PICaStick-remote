@@ -13,7 +13,7 @@ export default class PhotosControllerComponent {
         this.selectedDiskFile = null;
     }
 
-    onChangeFile(file: Entry) {
+    onChangeFile(file?: Entry) {
         this.selectedDiskFile = file;
     }
 
