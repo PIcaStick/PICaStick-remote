@@ -6,6 +6,7 @@ import {MyApp} from './app.component';
 
 import {HomePage} from '../pages/home/home';
 import {AboutPage} from "../pages/about/about";
+import {IdentificationPage} from "../pages/identification/identification";
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
@@ -19,15 +20,19 @@ import ActionBarComponent from '../components/action-bar/action-bar';
 import {ServerProvider} from '../providers/upload/server';
 import {HttpClientModule} from "@angular/common/http";
 
+import TokenDefinitionComponent from '../components/token-definition/token-definition';
+
 @NgModule({
     declarations: [
         MyApp,
         HomePage,
         AboutPage,
+        IdentificationPage,
         DirContentComponent,
         PhotosControllerComponent,
         AlbumVisualizerComponent,
         ActionBarComponent,
+        TokenDefinitionComponent,
     ],
     imports: [
         BrowserModule,
@@ -39,6 +44,7 @@ import {HttpClientModule} from "@angular/common/http";
         MyApp,
         HomePage,
         AboutPage,
+        IdentificationPage,
         DirContentComponent,
     ],
     providers: [

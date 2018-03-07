@@ -5,6 +5,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 
 import {HomePage} from "../pages/home/home";
 import {AboutPage} from "../pages/about/about";
+import {IdentificationPage} from "../pages/identification/identification";
 
 @Component({
     templateUrl: 'app.html'
@@ -33,6 +34,11 @@ export class MyApp {
 
     home() {
         this.nav.setRoot(HomePage);
+        this.menu.close();
+    }
+
+    identification() {
+        this.nav.setRoot(IdentificationPage);
         this.menu.close();
     }
 }
