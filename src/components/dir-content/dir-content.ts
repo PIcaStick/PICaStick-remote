@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 
 import {Entry} from "@ionic-native/file";
 import {FileSystemProvider} from "../../providers/file-system/file-system";
@@ -9,7 +9,7 @@ import {Events} from "ionic-angular";
     selector: 'dir-content',
     templateUrl: 'dir-content.html'
 })
-export class DirContentComponent implements OnInit {
+export class DirContentComponent implements OnInit, OnDestroy {
 
     dirContent: Entry[];
     selectedFile: Entry;
@@ -18,13 +18,20 @@ export class DirContentComponent implements OnInit {
                 private events: Events) {
         this.dirContent = [];
         this.selectedFile = null;
+        this.addPictureHandler = this.addPictureHandler.bind(this);
     }
 
     ngOnInit() {
         this.reloadDirContent('/sdcard/DCIM/Camera');
-        this.events.subscribe("picture:add", () => {
-            this.pictureAdd();
-        });
+        this.events.subscribe("picture:add", this.addPictureHandler);
+    }
+
+    ngOnDestroy() {
+        this.events.unsubscribe("picture:add", this.addPictureHandler);
+    }
+
+    addPictureHandler() {
+        this.pictureAdd();
     }
 
     changeDirOrActivate(dirOrFile: Entry) {

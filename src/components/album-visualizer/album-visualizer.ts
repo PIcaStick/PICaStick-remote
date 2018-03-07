@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, OnDestroy} from '@angular/core';
 import {Picture} from "../../models/picture";
 import {ServerProvider} from "../../providers/upload/server";
 import {Entry} from "@ionic-native/file";
@@ -8,7 +8,7 @@ import {Events, Slides} from "ionic-angular";
     selector: 'album-visualizer',
     templateUrl: 'album-visualizer.html'
 })
-export default class AlbumVisualizerComponent implements OnInit {
+export default class AlbumVisualizerComponent implements OnInit, OnDestroy {
 
     @ViewChild(Slides) slides: Slides;
 
@@ -17,16 +17,28 @@ export default class AlbumVisualizerComponent implements OnInit {
     constructor(public server: ServerProvider,
                 private events: Events) {
         this.picturesFIFO = [];
+        this.addHandler = this.addHandler.bind(this);
+        this.removeHandler = this.removeHandler.bind(this);
     }
 
     ngOnInit(): void {
-        this.events.subscribe('picture:add:found', (entry: Entry) => {
-            this.addPicture(entry);
-        });
-        this.events.subscribe("picture:delete", () => {
-            this.delPicture();
-        });
+        this.events.subscribe('picture:add:found', this.addHandler);
+        this.events.subscribe("picture:delete", this.removeHandler);
     }
+    
+    ngOnDestroy(): void {
+        this.events.unsubscribe('picture:add:found', this.addHandler);
+        this.events.unsubscribe("picture:delete", this.removeHandler);
+    }
+
+    addHandler(entry: Entry) {
+        this.addPicture(entry);
+    }
+
+    removeHandler() {
+        this.delPicture();
+    }
+
 
     addPicture(entry: Entry): void {
         this.findImage(entry).then(index => {
