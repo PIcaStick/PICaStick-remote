@@ -26,13 +26,14 @@ export default class AlbumControllerComponent implements OnInit, OnDestroy {
     ngOnInit() {
         const pictureUpdateSub = this.album.onPictureUpdate.subscribe(() => {
             this.updateRemovePictureAction();
+            this.updateAddPictureAction();
         });
-
 
         this.subscriptions = [
             pictureUpdateSub,
         ];
 
+        this.updateAddPictureAction();
         this.updateRemovePictureAction();
     }
 
@@ -44,6 +45,7 @@ export default class AlbumControllerComponent implements OnInit, OnDestroy {
 
     onChangeSelectedDiskFile(file?: Entry) {
         this.selectedDiskFile = file;
+        this.updateAddPictureAction();
     }
 
     onClickArrowDown() {
@@ -55,6 +57,14 @@ export default class AlbumControllerComponent implements OnInit, OnDestroy {
 
     onClickArrowUp() {
         this.albumVisualizer.removeCurrentPicture();
+    }
+
+    updateAddPictureAction() {
+        const cannotAddPicture = this.selectedDiskFile
+            ? this.album.contains(picture => picture.entry.fullPath === this.selectedDiskFile.fullPath)
+            : true;
+
+        this.toolBar.disableArrowDown(cannotAddPicture);
     }
 
     updateRemovePictureAction() {
