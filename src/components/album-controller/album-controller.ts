@@ -60,15 +60,15 @@ export default class AlbumControllerComponent implements OnInit, OnDestroy {
     }
 
     updateAddPictureAction() {
-        const cannotAddPicture = this.selectedDiskFile
+        const ifCannotAddPicture = this.selectedDiskFile
             ? this.album.contains(picture => picture.entry.fullPath === this.selectedDiskFile.fullPath)
             : true;
 
-        this.toolBar.disableArrowDown(cannotAddPicture);
+        this.toolBar.disableArrowDown(ifCannotAddPicture);
     }
 
     updateRemovePictureAction() {
-        const cannotRemovePicture = this.album.isEmpty();
-        this.toolBar.disableArrowUp(cannotRemovePicture);
+        const ifCannotRemovePicture = this.album.isEmpty();
+        this.toolBar.disableArrowUp(ifCannotRemovePicture);
     }
 }
