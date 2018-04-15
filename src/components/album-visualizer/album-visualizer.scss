@@ -1,0 +1,9 @@
+@import '../../theme/skeleton.scss';
+
+album-visualizer {
+  @include component-skeleton;
+
+  img {
+    height: 150px !important;
+  }
+}

@@ -1,0 +1,10 @@
+<ion-grid>
+    <ion-col>
+        <ion-list>
+            <ion-item *ngFor="let entry of directoryEntries" 
+                    [ngClass]="{'file-selected': entry.fullPath === selectedFile?.fullPath}" 
+                    (click)="onClickEntry(entry)">{{entry.name}}
+            </ion-item>
+        </ion-list>
+    </ion-col>
+</ion-grid>

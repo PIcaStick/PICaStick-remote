@@ -1,0 +1,10 @@
+@import '../../theme/skeleton.scss';
+
+tool-bar {
+  @include component-skeleton;
+  
+  button {
+    font-size: 25px !important;
+    font-weight: 700 !important;
+  }
+}

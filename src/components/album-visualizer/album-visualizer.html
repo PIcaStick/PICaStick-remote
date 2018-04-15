@@ -1,0 +1,6 @@
+<ion-slides #slides>
+    <ion-slide *ngFor="let picture of album.pictures; let i = index">
+        <img src="{{picture.entry.fullPath}}">
+        <div>{{i + 1}}/{{album.pictures.length}}</div>
+    </ion-slide>
+</ion-slides>

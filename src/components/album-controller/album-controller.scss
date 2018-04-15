@@ -1,0 +1,21 @@
+album-controller {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+
+  disk-file-picker {
+    flex: 1;
+    border: 1px solid black;
+  }
+
+  tool-bar {
+    border: 1px solid black;
+  }
+
+  album-visualizer {
+    flex: 1;
+    min-height: 0;
+    border: 1px solid black;
+  }
+}

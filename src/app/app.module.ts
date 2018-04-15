@@ -6,35 +6,56 @@ import {MyApp} from './app.component';
 
 import {HomePage} from '../pages/home/home';
 import {AboutPage} from "../pages/about/about";
+import {IdentificationPage} from "../pages/identification/identification";
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
-import {LogProvider} from '../providers/log/log';
-import {LoggerProvider} from '../providers/logger/logger';
+
+import {DiskFilePickerComponent} from "../components/disk-file-picker/disk-file-picker";
+import {FileSystemProvider} from '../providers/file-system/file-system';
+
+import AlbumControllerComponent from '../components/album-controller/album-controller';
+import AlbumVisualizerComponent from '../components/album-visualizer/album-visualizer';
+import ToolBarComponent from '../components/tool-bar/tool-bar';
+import {ServerProvider} from '../providers/upload/server';
+import {HttpClientModule} from "@angular/common/http";
+
+import TokenDefinitionComponent from '../components/token-definition/token-definition';
+import { TokenIdentificationPrivider } from '../providers/token-identification/token-identification';
 
 @NgModule({
     declarations: [
         MyApp,
         HomePage,
-        AboutPage
+        AboutPage,
+        IdentificationPage,
+        DiskFilePickerComponent,
+        AlbumControllerComponent,
+        AlbumVisualizerComponent,
+        ToolBarComponent,
+        TokenDefinitionComponent,
     ],
     imports: [
         BrowserModule,
-        IonicModule.forRoot(MyApp)
+        IonicModule.forRoot(MyApp),
+        HttpClientModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
         MyApp,
         HomePage,
-        AboutPage
+        AboutPage,
+        IdentificationPage,
+        DiskFilePickerComponent,
     ],
     providers: [
         StatusBar,
         SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         File,
-        LogProvider,
-        LoggerProvider
+        FileSystemProvider,
+        ServerProvider,
+        TokenIdentificationPrivider,
     ]
 })
 export class AppModule {
