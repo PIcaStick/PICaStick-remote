@@ -15,6 +15,7 @@ export default class AlbumVisualizerComponent{
     constructor() {
     }
 
+    // TODO: Move this function in the controller ??
     addPicture(newPicture: Picture): void {
         const isInAlbum = this.album.contains(picture => picture.equals(newPicture));
         if (isInAlbum) {
@@ -24,6 +25,7 @@ export default class AlbumVisualizerComponent{
         this.album.addPicture(newPicture);
     }
 
+    // TODO: Move part of this function in the controller ??
     removeCurrentPicture(): void {
         if (this.album.isEmpty()) {
             return;

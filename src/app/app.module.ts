@@ -22,6 +22,8 @@ import {HttpClientModule} from "@angular/common/http";
 
 import TokenDefinitionComponent from '../components/token-definition/token-definition';
 import { TokenIdentificationPrivider } from '../providers/token-identification/token-identification';
+import { Base64 } from '@ionic-native/base64';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 
 @NgModule({
     declarations: [
@@ -56,6 +58,8 @@ import { TokenIdentificationPrivider } from '../providers/token-identification/t
         FileSystemProvider,
         ServerProvider,
         TokenIdentificationPrivider,
+        Base64,
+        FileTransfer,
     ]
 })
 export class AppModule {
